@@ -1,0 +1,3 @@
+Fix faker
+- Fix api url controller not found :smiley:
+- create user and question relationship
