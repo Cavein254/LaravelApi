@@ -25,7 +25,7 @@ class QuestionFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence,
-            'body' => $this->faker->paragraphs,
+            'body' => $this->faker->paragraph,
         ];
     }
 }

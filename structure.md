@@ -21,3 +21,6 @@ Username, email and password
 # AnswersTb -> Question (One Question Multiple Answers)
 # AnswerCommentTB -> Answer (One Answer Multiple Comments)
 # ProfileTB -> User (one user can only have one Profile)
+
+
+https://www.nicesnippets.com/blog/how-to-store-multiple-select-value-in-laravel

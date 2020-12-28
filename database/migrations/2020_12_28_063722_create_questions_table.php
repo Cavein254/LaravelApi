@@ -18,6 +18,10 @@ class CreateQuestionsTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->timestamps();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on(user)
+            ->onCascade('delete');
         });
     }
 
