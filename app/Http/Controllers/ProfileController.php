@@ -51,7 +51,8 @@ class ProfileController extends Controller
                 'githuburl' => $request->githuburl
             ]);
 
-            return $profile;
+            $findings = Profile::find($request->user_id);
+            return $findings;
         }
     }
 
