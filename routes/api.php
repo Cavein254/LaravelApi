@@ -25,4 +25,6 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('questions', 'App\Http\Controllers\QuestionController');
 Route::apiResource('questions', 'App\Http\Controllers\QuestionController');
 
+Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
+Route::post('profile{profile}', 'App\Http\Controllers\ProfileController@show');
 Route::resource('profile', 'App\Http\Controllers\ProfileController');

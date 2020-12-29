@@ -11,7 +11,8 @@ class ProfileController extends Controller
 
     public function index()
     {
-        
+        $profile = Profile::all();
+        return $profile;
     }
 
 
@@ -23,47 +24,79 @@ class ProfileController extends Controller
 
     public function store(Request $request)
     {
-        Profile::create($request->all());
-        return [
-            "msg" => "success"
-        ];
+        $user = User::findOrFail($request->user_id);
+        if (!$user) {
+            $profile = Profile::create([
+                'user_id' => $request->user_id,
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'aboutme' => $request->aboutme,
+                'profilepicurl' => $request->profilepicurl,
+                'languages' => $request->languages,
+                'specialization' => $request->specialization,
+                'workurl' => $request->workurl,
+                'githuburl' => $request->githuburl
+            ]);
+            return $profile;
+        } else {
+
+            $profile = Profile::where('user_id', $request->user_id)->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'aboutme' => $request->aboutme,
+                'profilepicurl' => $request->profilepicurl,
+                'languages' => $request->languages,
+                'specialization' => $request->specialization,
+                'workurl' => $request->workurl,
+                'githuburl' => $request->githuburl
+            ]);
+
+            return $profile;
+        }
     }
 
 
     public function show(Profile $profile)
     {
-        //
+        return $profile;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Profile $profile)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Profile $profile)
     {
-        //
+        $profile->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'aboutme' => $request->aboutme,
+            'profilepicurl' => $request->profilepicurl,
+            'languages' => $request->languages,
+            'specialization' => $request->specialization,
+            'workurl' => $request->workurl,
+            'githuburl' => $request->githuburl
+        ]);
+        return $profile;
+
+        // $user = User::findOrFail($request->user_id);
+        // if ($user) {
+
+        // } else {
+        //     return [
+        //         'msg' => 'failed'
+        //     ];
+        // }
+
+
+
+        return $profile;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Profile $profile)
     {
         //
