@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::resource('questions', 'App\Http\Controllers\QuestionController');
+// Route::get('/questions', 'QuestionsContoller@index');
+// Route::get('/questions/{question}', 'QuestionsContoller@show');
+
+// Route::resource('questions', 'App\Http\Controllers\QuestionController');
+Route::apiResource('questions', 'App\Http\Controllers\QuestionController');
+
+Route::resource('profile', 'App\Http\Controllers\ProfileController');

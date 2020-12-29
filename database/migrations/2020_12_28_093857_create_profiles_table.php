@@ -15,6 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->string('firstname');
             $table->string('lastname');
             $table->text('aboutme');
@@ -24,10 +25,10 @@ class CreateProfilesTable extends Migration
             $table->string('workurl');
             $table->string('githuburl');
             $table->timestamps();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('user')
-                ->onCascade('delete');
+            // $table->foreign('users_id')
+            //     ->references('id')
+            //     ->on('users')
+            //     ->onCascade('delete');
         });
     }
 

@@ -2,83 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestionsDelete;
+use App\Http\Resources\QuestionsResource;
 use Illuminate\Http\Request;
+use \App\Models\Question;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        //get all questions
+        $questions = Question::all();
+        return QuestionsResource::collection($questions);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        //cr
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $question = Question::create([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+        return (new QuestionsResource($question))
+            ->response()
+            ->header('Location', route('questions.show', ['question' => $question]));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Question $question)
     {
-        //
+        return new QuestionsResource($question);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Question $question)
     {
-        //
+        $question->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return new QuestionsResource($question);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return new QuestionsDelete($question);
     }
 }
