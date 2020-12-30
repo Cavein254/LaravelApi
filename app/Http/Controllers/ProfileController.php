@@ -83,24 +83,11 @@ class ProfileController extends Controller
             'githuburl' => $request->githuburl
         ]);
         return $profile;
-
-        // $user = User::findOrFail($request->user_id);
-        // if ($user) {
-
-        // } else {
-        //     return [
-        //         'msg' => 'failed'
-        //     ];
-        // }
-
-
-
-        return $profile;
     }
 
 
     public function destroy(Profile $profile)
     {
-        //
+        $profile->delete();
     }
 }

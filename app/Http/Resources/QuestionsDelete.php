@@ -17,7 +17,7 @@ class QuestionsDelete extends JsonResource
         return [
             'status' => '204',
             'type' => 'questions',
-            'message' => 'Successfully Delete',
+            'msg' => 'Delete succcessful',
             'attributes' => [
                 'user_id' => $this->user_id,
                 'title' => $this->title,
