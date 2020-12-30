@@ -1,3 +1,1 @@
--   Fix faker :fire:
--   Fix api url controller not found :smiley:
--   create user and question relationship
+-fix Answer relationship bug

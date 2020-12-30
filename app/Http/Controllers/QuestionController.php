@@ -41,10 +41,6 @@ class QuestionController extends Controller
     }
 
 
-    public function edit($id)
-    {
-        //
-    }
 
 
     public function update(Request $request, Question $question)

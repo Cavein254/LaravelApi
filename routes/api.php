@@ -28,3 +28,6 @@ Route::apiResource('questions', 'App\Http\Controllers\QuestionController');
 Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
 Route::post('profile{profile}', 'App\Http\Controllers\ProfileController@show');
 Route::resource('profile', 'App\Http\Controllers\ProfileController');
+
+// Route::get('answers{answers}', 'App\Http\Controllers\AnswersController@show');
+Route::apiResource('answers', 'App\Http\Controllers\AnswersController');
