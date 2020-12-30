@@ -81,6 +81,9 @@ class ProfileController extends Controller
             'specialization' => $request->specialization,
             'workurl' => $request->workurl,
             'githuburl' => $request->githuburl
+            // $profilevisibilitytopublic
+            // $profileviewtimes
+            // $Peopleviewedprofile
         ]);
         return $profile;
     }
