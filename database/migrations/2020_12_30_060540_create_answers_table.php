@@ -15,11 +15,11 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('question_id');
-            $table->integer('likes')->default(0);
+            $table->unsignedBigInteger('user_id');
             $table->text('body');
+            $table->integer('likes')->default(0);
             $table->timestamps();
-            $table->foreign('question_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('questions')
                 ->onCascade('delete');

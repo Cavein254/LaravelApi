@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
+            $table->string('slug');
             $table->integer('likes')->default(0);
             $table->text('body');
             $table->timestamps();

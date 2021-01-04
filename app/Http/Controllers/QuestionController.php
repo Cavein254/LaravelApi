@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\QuestionsDelete;
 use App\Http\Resources\QuestionsResource;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use \App\Models\Question;
 
 class QuestionController extends Controller
@@ -28,6 +30,7 @@ class QuestionController extends Controller
             'user_id' => $request->user_id,
             'title' => $request->title,
             'body' => $request->body,
+            'slug' => Str::slug($request->title)
         ]);
         return (new QuestionsResource($question))
             ->response()

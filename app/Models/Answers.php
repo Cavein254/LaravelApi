@@ -10,4 +10,14 @@ class Answers extends Model
     use HasFactory;
 
     protected $fillable = ['question_id', 'body', 'likes'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Answers::class, 'parent_id');
+    }
 }

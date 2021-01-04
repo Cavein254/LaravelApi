@@ -18,6 +18,7 @@ class AnswersController extends Controller
 
     public function store(Request $request)
     {
+
         $answer = Answers::create([
             'question_id' => $request->question_id,
             'body' => $request->body,
