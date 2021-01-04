@@ -18,7 +18,7 @@ class AnswersResource extends JsonResource
             'id' => (string)$this->id,
             'type' => 'answers',
             'attributes' => [
-                'question_id' => $this->question_id,
+                'questions_id' => $this->questions_id,
                 'body' => $this->body,
                 'likes' => $this->likes,
                 'created_at' => $this->created_at,

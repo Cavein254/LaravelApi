@@ -12,7 +12,7 @@ class AnswersController extends Controller
     public function index()
     {
         $answer = Answers::all();
-        return $answer;
+        return AnswersResource::collection($answer);
     }
 
 
@@ -20,8 +20,9 @@ class AnswersController extends Controller
     {
 
         $answer = Answers::create([
-            'question_id' => $request->question_id,
+            'questions_id' => $request->questions_id,
             'body' => $request->body,
+            'likes' => $request->likes
         ]);
         return (new AnswersResource($answer))
             ->response()

@@ -22,8 +22,12 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/questions', 'QuestionsContoller@index');
 // Route::get('/questions/{question}', 'QuestionsContoller@show');
 
-// Route::resource('questions', 'App\Http\Controllers\QuestionController');
-Route::apiResource('questions', 'App\Http\Controllers\QuestionController');
+Route::resource('questions', 'App\Http\Controllers\QuestionController');
+// Route::apiResource('login', 'App\Http\Controllers\API\AuthControllers\@login');
+// Route::apiResource('login', 'App\Http\Controllers\API\AuthControllers\@register');
+Route::get('users', 'App\Http\Controllers\UserList@index');
+Route::post('login', 'App\Http\Controllers\AccessController@login');
+Route::post('register', 'App\Http\Controllers\AccessController@register');
 
 Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
 Route::post('profile{profile}', 'App\Http\Controllers\ProfileController@show');

@@ -18,6 +18,7 @@ class CreateBlogsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('body');
+            $table->string('slug');
             $table->integer('likes')->default(0);
             $table->timestamps();
             $table->foreign('user_id')

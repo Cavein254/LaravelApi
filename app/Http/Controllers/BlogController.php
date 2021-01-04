@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class BlogController extends Controller
 {
@@ -24,6 +26,7 @@ class BlogController extends Controller
             'user_id' => $request->user_id,
             'title' => $request->title,
             'body' => $request->body,
+            'slug' => Str::slug($request->title)
         ]);
         return (new BlogResource($blog))
             ->response()

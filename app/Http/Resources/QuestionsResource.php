@@ -16,6 +16,7 @@ class QuestionsResource extends JsonResource
                 'user_id' => $this->user_id,
                 'title' => $this->title,
                 'body' => $this->body,
+                'slug' => $this->slug,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ]
