@@ -29,9 +29,10 @@ Route::get('users', 'App\Http\Controllers\UserList@index');
 Route::post('login', 'App\Http\Controllers\AccessController@login');
 Route::post('register', 'App\Http\Controllers\AccessController@register');
 
-Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
-Route::post('profile{profile}', 'App\Http\Controllers\ProfileController@show');
-Route::resource('profile', 'App\Http\Controllers\ProfileController');
+// Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
+// Route::put('profile{profile}', 'App\Http\Controllers\ProfileController@update');
+// Route::post('profile', 'App\Http\Controllers\ProfileController@store');
+Route::apiResource('profile', 'App\Http\Controllers\ProfileController');
 
 // Route::get('answers{answers}', 'App\Http\Controllers\AnswersController@show');
 Route::apiResource('answers', 'App\Http\Controllers\AnswersController');
