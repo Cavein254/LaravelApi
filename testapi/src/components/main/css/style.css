@@ -1,0 +1,26 @@
+.text_main {
+    width: 50%;
+    float: left;
+}
+
+.pic_main {
+    width: 50%;
+    float: right;
+    position: relative;
+}
+
+.text_main_two {
+    width: 50%;
+    float: right;
+}
+
+.pic_main_two {
+    width: 50%;
+    float: left;
+}
+
+.call_to_action_btn {
+    position: absolute;
+    bottom: 0;
+    right: 40%;
+}

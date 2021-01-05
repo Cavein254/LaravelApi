@@ -1,51 +1,75 @@
 import React from "react";
+import "./css/style.css";
+import Customer from "../../assets/img/customer.jpg";
+import Eye from "../../assets/img/eye.jpg";
 
 export default function Main() {
     return (
-        <div>
-            <div className="subheader_one">
-                <div>
+        <div className="bg-white">
+            <div className="subheader_one flex">
+                <div className="text_main">
                     <h1>Site Intro Text</h1>
                 </div>
-                <div>
-                    <h2>Picture here one </h2>
+                <div className="flex pic_main">
+                    <img
+                        src={Customer}
+                        alt="customer"
+                        className="object-fill"
+                    />
+                    <div className="call_to_action_btn">
                     <button>Call to Action</button>
+                    </div>
                 </div>
             </div>
-            <div className="subheader_two">
-                <div>
-                    <h1>Picture here</h1>
-                    <button>Call to action</button>
-                </div>
-                <div>
-                    <h1>Site Intro To here</h1>
-                </div>
-            </div>
-            <div className="subheader_two">
-                <div>
-                    <h1>Site Intro here</h1>
-                </div>
-                <div>
-                    <h1>Picture Here</h1>
-                    <button>Call to action</button>
+ {/* This is the second card  */}
+            <div className="subheader_one flex mt-5">
+                <div className="flex pic_main_two">
+                    <img
+                        src={Customer}
+                        alt="customer"
+                        className="object-fill"
+                    />
+                    <div className="text_main_two">
+                        <h1>Site Intro Text</h1>
+                    </div>
+                    <div className="call_to_action_btn_2">
+                        <button>Call to Action</button>
+                    </div>
                 </div>
             </div>
-            <div className="subheader_two">
-                <div>
-                    <h1>Picture here</h1>
-                    <button>Call to action</button>
+
+{/* This is the third Card */}
+
+            <div className="subheader_one flex">
+                <div className="text_main">
+                    <h1>Site Intro Text</h1>
                 </div>
-                <div>
-                    <h1>Site Intro To here</h1>
+                <div className="flex pic_main">
+                    <img
+                        src={Customer}
+                        alt="customer"
+                        className="object-fill"
+                    />
+                    <div className="call_to_action_btn">
+                        <button>Call to Action</button>
+                    </div>
                 </div>
             </div>
-            <div className="subheader_two">
-                <div>
-                    <h1>Site Created by Developers for Developers</h1>
-                </div>
-                <div>
-                    <h1>Picture Here</h1>
-                    <button>Call to action</button>
+            
+{/* last card is here */}
+            <div className="subheader_one flex mt-5">
+                <div className="flex pic_main_two">
+                    <img
+                        src={Customer}
+                        alt="customer"
+                        className="object-fill"
+                    />
+                    <div className="text_main_two">
+                        <h1>Site Intro Text</h1>
+                    </div>
+                    <div className="call_to_action_btn_left">
+                        <button>Call to Action</button>
+                    </div>
                 </div>
             </div>
         </div>

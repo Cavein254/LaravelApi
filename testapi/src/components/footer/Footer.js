@@ -2,8 +2,21 @@ import React from "react";
 
 export default function Footer() {
     return (
-        <div>
-            <h1>Footer</h1>
+        <div className="flex text-center">
+            <div className="flex-1">
+                <ul>
+                    <li>item</li>
+                    <li>item</li>
+                    <li>item</li>
+                </ul>
+            </div>
+            <div className="flex-1">
+                <ul>
+                    <li>item</li>
+                    <li>item</li>
+                    <li>item</li>
+                </ul>
+            </div>
         </div>
     );
 }
