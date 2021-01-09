@@ -38,3 +38,4 @@ Route::apiResource('profile', 'App\Http\Controllers\ProfileController');
 Route::apiResource('answers', 'App\Http\Controllers\AnswersController');
 
 Route::apiResource('blog', 'App\Http\Controllers\BlogController');
+

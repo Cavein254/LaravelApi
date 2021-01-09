@@ -5,7 +5,7 @@ import Eye from "../../assets/img/eye.jpg";
 
 export default function Main() {
     return (
-        <div className="bg-white">
+        <div className="bg-black text-white">
             <div className="subheader_one flex">
                 <div className="text_main">
                     <h1>Site Intro Text</h1>
@@ -17,11 +17,11 @@ export default function Main() {
                         className="object-fill"
                     />
                     <div className="call_to_action_btn">
-                    <button>Call to Action</button>
+                        <button>Call to Action</button>
                     </div>
                 </div>
             </div>
- {/* This is the second card  */}
+            {/* This is the second card  */}
             <div className="subheader_one flex mt-5">
                 <div className="flex pic_main_two">
                     <img
@@ -32,13 +32,10 @@ export default function Main() {
                     <div className="text_main_two">
                         <h1>Site Intro Text</h1>
                     </div>
-                    <div className="call_to_action_btn_2">
-                        <button>Call to Action</button>
-                    </div>
                 </div>
             </div>
 
-{/* This is the third Card */}
+            {/* This is the third Card */}
 
             <div className="subheader_one flex">
                 <div className="text_main">
@@ -55,8 +52,8 @@ export default function Main() {
                     </div>
                 </div>
             </div>
-            
-{/* last card is here */}
+
+            {/* last card is here */}
             <div className="subheader_one flex mt-5">
                 <div className="flex pic_main_two">
                     <img
@@ -66,9 +63,6 @@ export default function Main() {
                     />
                     <div className="text_main_two">
                         <h1>Site Intro Text</h1>
-                    </div>
-                    <div className="call_to_action_btn_left">
-                        <button>Call to Action</button>
                     </div>
                 </div>
             </div>

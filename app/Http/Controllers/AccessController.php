@@ -11,12 +11,11 @@ class AccessController extends Controller
 {
     public function register(Request $request)
     {
-        $user = User::create($request->validate([
-            'name' => 'required|max:55',
-            'email' => 'email|required|unique:users',
-            'password' => 'required',
-        ]));
-
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
         return [
             'user' => $user,
         ];

@@ -1,3 +1,6 @@
+.hero {
+    vh: 150%;
+}
 .text_main {
     width: 50%;
     float: left;
@@ -23,4 +26,7 @@
     position: absolute;
     bottom: 0;
     right: 40%;
+}
+.cart_icon {
+    font-size: 1.2rem;
 }
