@@ -20,6 +20,12 @@ class CreateQuestionsTable extends Migration
             $table->string('slug');
             $table->integer('likes')->default(0);
             $table->text('body');
+            $table->integer('views');
+            $table->string('level');
+            $table->string('answers');
+            $table->string('languages');
+            $table->boolean('featured')->default(0);
+            $table->string('img_url');
             $table->timestamps();
             $table->foreign('user_id')
                 ->references('id')

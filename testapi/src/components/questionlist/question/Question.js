@@ -2,15 +2,16 @@ import React from "react";
 import Eye from "../../../assets/img/eye.jpg";
 import { ArrowBarUp, Eyeglasses, ReplyAllFill } from "react-bootstrap-icons";
 
-export default function Question() {
+export default function Question({ question }) {
+    console.log(question);
     return (
         <div className="flex bg-white shadow-md m-4 p-4 bg-teal-100">
             <div>
-                <img className="rounded h-24" src={Eye} />
+                <img className="rounded-full h-24 w-24" src={Eye} />
             </div>
             <div className="flex-1 rounded px-4 mx-4 bg-gray-100">
                 <div className="bg-red-400 text-white rounded m-0 p-2 ">
-                    <h3>Here where the questions will land...</h3>
+                    <h3>{question.attributes.title}</h3>
                 </div>
                 <div className="sm:flex text-xs justify-between">
                     <div>

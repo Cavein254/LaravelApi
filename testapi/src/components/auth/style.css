@@ -1,0 +1,8 @@
+.auth_pic {
+    width: 50%;
+    float: right;
+}
+.auth_text {
+    width: 50%;
+    float: left;
+}
