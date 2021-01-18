@@ -6,9 +6,6 @@ export default function Question({ question }) {
     console.log(question);
     return (
         <div className="flex bg-white shadow-md m-4 p-4 bg-teal-100">
-            <div>
-                <img className="rounded-full h-24 w-24" src={Eye} />
-            </div>
             <div className="flex-1 rounded px-4 mx-4 bg-gray-100">
                 <div className="bg-red-400 text-white rounded m-0 p-2 ">
                     <h3>{question.attributes.title}</h3>

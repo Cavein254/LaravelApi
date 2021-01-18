@@ -1,39 +1,63 @@
-import React from "react";
-import  Hero from "../../assets/img/hero.jpg";
-import './style.css';
+import React, { useState } from "react";
+import axios from "axios";
+import Hero from "../../assets/img/hero.jpg";
 
-export default function Login() {
-    return <div>
-        <div className="flex m-0 mt-0 bg-gray-100">
-            <div>
-                <div className="auth_card shadow-xl m-20 mx-40 bg-white">
-                    <div className="align-center m-0 p-0">
-                        <img src={Hero} className="h-24"/>
-                    </div>
-                    <div className="card_content p-10">
-                        <div>
+export default function Login(props) {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const handleSubmit = e => {
+        e.preventDefault();
+        axios
+            .post("http://localhost:8000/api/login", {
+                email,
+                password
+            })
+            .then(res => {
+                console.log(res);
+            });
+    };
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="flex bg-gray-100">
+                <div>
+                    <div className="bg-white m-10 shadow-lg">
+                        <div className="-mt-3">
+                            <img
+                                src={Hero}
+                                className="h-16 mx-auto w-16 rounded-full"
+                            />
+                        </div>
+                        <div className="card_content p-6">
                             <div>
-                                <input className="px-2 my-2 text-xl" type="text" placeholder="Name"  name="name"/>
+                                <div>
+                                    <input
+                                        className="px-2 my-2 text-md"
+                                        type="email"
+                                        placeholder="Email"
+                                        name="email"
+                                    />
+                                </div>
+                                <div>
+                                    <input
+                                        className="px-2 my-2 text-md"
+                                        type="password"
+                                        placeholder="Password"
+                                        name="password"
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <input className="px-2 my-2 text-xl" type="email" placeholder="Email" name="email"/>
+                            <div className="my-2">
+                                <button
+                                    type="submit"
+                                    className=" bg-black text-white text-lg p-2 "
+                                >
+                                    Login
+                                </button>
                             </div>
-                            <div>
-                                <input className="px-2 my-2 text-xl" type="password" placeholder="Password" name="password"/>
-                            </div>
-                            <div>
-                                <input className="px-2 my-2 text-xl" type="password" placeholder="Confirm Password" name="confirm_password"/>
-                            </div>
-                            </div>
-                        <div className="my-2">
-                            <button type="submit" className=" bg-black text-white text-lg p-2 ">Register</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="auth_pic">
-                <img src={Hero} />
-            </div>
-        </div>
-    </div>;
+        </form>
+    );
 }

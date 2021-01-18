@@ -5,7 +5,7 @@ import "../main/css/style.css";
 
 export default function Header() {
     return (
-        <div className="bg-red-500 text-white sm:text-xs pt-1">
+        <div className="bg-red-500 text-white md:text-xs pt-1">
             <div className="flex mx-1">
                 <div>logo</div>
                 <div>Title</div>
