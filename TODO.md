@@ -1,1 +1,4 @@
 -fix Answer relationship bug
+-Create news table
+-create relationships to book apointments
+-Intergrate M-pesa Api
