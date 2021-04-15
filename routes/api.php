@@ -16,8 +16,11 @@ Route::resource('questions', 'App\Http\Controllers\QuestionController');
 // Route::apiResource('login', 'App\Http\Controllers\API\AuthControllers\@login');
 // Route::apiResource('login', 'App\Http\Controllers\API\AuthControllers\@register');
 Route::get('users', 'App\Http\Controllers\UserList@index');
-Route::post('login', 'App\Http\Controllers\AccessController@login');
+Route::group(['middleware' => ['auth:api']], function () {
+});
 Route::post('register', 'App\Http\Controllers\AccessController@register');
+Route::post('login', 'App\Http\Controllers\AccessController@login');
+
 
 // Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
 // Route::put('profile{profile}', 'App\Http\Controllers\ProfileController@update');
