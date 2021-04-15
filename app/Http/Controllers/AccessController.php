@@ -11,14 +11,19 @@ class AccessController extends Controller
 {
     public function register(Request $request)
     {
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => $request->password,
+        $validatedData = $request->validate([
+            'username' => 'required|max:60|unique:users',
+            'email' => 'email|required|unique:users',
+            'password' => 'required|confirmed|min:5'
         ]);
-        return [
+        $validatedData['password'] = bcrypt($request->password);
+        $user = User::create([$validatedData]);
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return ([
             'user' => $user,
-        ];
+            'access_token' => $accessToken
+        ]);
     }
 
     public function login(Request $request)
@@ -28,10 +33,8 @@ class AccessController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($validatedData)) {
-            $user = Auth::user();
-            $token = $user->createToken('admin')->accessToken;
-            return ['token' => $token];
+        if (!Auth::attempt($validatedData)) {
+            return response(['error' => 'Invalid Credentials']);
         }
         return response(['error' => 'unauthorized'], 200);
     }
