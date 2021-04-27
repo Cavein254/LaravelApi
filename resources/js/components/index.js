@@ -11,6 +11,6 @@ export { default as Editing } from "./Editor/Editing";
 export { default as Login } from "./auth/Login";
 export { default as Register } from "./auth/Register";
 export { default as BlogEdit } from "./Blog/BlogEdit";
-export { default as BlogList } from "./Blog/BlogList";
+export { default as Allblogs } from "./Blog/Allblogs";
 export { default as EditProfile } from "./profile/EditProfile";
 export { default as AnswerQuestionPage } from "./Questions/QuestionAnswers";

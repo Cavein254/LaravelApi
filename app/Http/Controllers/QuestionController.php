@@ -8,6 +8,7 @@ use App\Http\Resources\QuestionsResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use \App\Models\Question;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
@@ -26,12 +27,23 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        $question = Question::create([
-            'user_id' => $request->user_id,
-            'title' => $request->title,
-            'body' => $request->body,
-            'slug' => Str::slug($request->title)
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'slug' => 'string',
+            'level' => 'string',
+            'languages' => 'string',
+            'features' => 'boolean',
+            'answers' => 'string',
+            'views' => 'string',
+            'likes' => 'string'
         ]);
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
+        }
+
+        $question = Question::create($request->toArray());
+
         return (new QuestionsResource($question))
             ->response()
             ->header('Location', route('questions.show', ['question' => $question]));

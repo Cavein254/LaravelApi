@@ -1,13 +1,12 @@
-import React, {useEffect} from "react";
-import {getAllQuestion}  from '../../api';
-import { Row, Col, Container } from "react-bootstrap";
-import { FaEye, FaThumbsUp } from "react-icons/fa";
+import React from "react";
+import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import {FaThumbsUp, FaEye} from 'react-icons/fa';
 import "./styles.css";
 
-function Questions() {
 
-  return (
-    <Container className="question_wrapper">
+const AllBlogs = () => {
+  return <div>
+       <Container className="question_wrapper">
       <Row>
         <Col className="col-3 side_view">
           <span>
@@ -35,7 +34,7 @@ function Questions() {
         <Col></Col>
       </Row>
     </Container>
-  );
-}
+  </div>;
+};
 
-export default Questions;
+export default AllBlogs;

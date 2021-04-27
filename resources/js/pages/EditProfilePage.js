@@ -1,5 +1,5 @@
 import React from "react";
-import { TopBar, Profile, FooterLove, EditProfile } from "../components/index";
+import { TopBar, FooterLove, EditProfile } from "../components/index";
 
 const EditProfilePage = () => {
   return (

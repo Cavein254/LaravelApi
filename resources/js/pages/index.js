@@ -6,6 +6,6 @@ export { default as EditingPage } from "./EditingPage";
 export { default as LoginPage } from "./LoginPage";
 export { default as RegisterPage } from "./RegisterPage";
 export { default as BlogEditPage } from "./BlogEditPage";
-export { default as BlogListPage } from "./BlogListPage";
+export { default as AllblogsPage } from "./AllblogsPage";
 export { default as EditProfilePage } from "./EditProfilePage";
 export { default as QuestionAnswersPage } from "./QuestionAnswersPage";
