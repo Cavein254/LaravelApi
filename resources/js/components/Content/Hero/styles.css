@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap");
+.hero {
+}
+.hero_content {
+  font-family: "Dancing Script", cursive;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.hero_content > h1 {
+  font-size: 4rem;
+}
+.logolg {
+  height: 3rem;
+}
+.hero_text {
+  display: flex;
+  justify-content: center;
+  scrollbar-color: transparent;
+}
+.hero_text > h4::-webkit-scrollbar {
+  /* Remove scrollbar in chrome */
+  display: none;
+}
+.hero_text > h4 {
+  /* Remove scrollbar in Firefox */
+  scrollbar-color: transparent;
+}
+
+.hero_pic {
+  width: 100%;
+}

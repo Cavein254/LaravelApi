@@ -6,23 +6,24 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AccessController extends Controller
 {
     public function register(Request $request)
     {
         $validatedData = $request->validate([
-            'username' => 'required|max:60',
+            'name' => 'required|max:60|unique:users',
             'email' => 'email|required|unique:users',
             'password' => 'required|min:5'
         ]);
-        $validatedData['password'] = bcrypt($request->password);
+        $validatedData['password'] = Hash::make($request->password);
+
         $user = User::create([
-            'username' => $validatedData['username'],
+            'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => $validatedData['password']
         ]);
-        // $accessToken = $user->createToken('authToken')->accessToken;
 
         return ([
             'user' => $user,
@@ -31,18 +32,33 @@ class AccessController extends Controller
 
     public function login(Request $request)
     {
-        $validatedData = $request->validate([
-            'email' => 'required',
-            'password' => 'required'
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email',
+            'password' => 'required|min:3|string',
         ]);
-
-        if (Auth::attempt($validatedData)) {
-            return response(['error' => 'Invalid Credentials']);
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
         }
-        $accessToken = Auth::user()->createToken('authToken')->accessToken;
-        return response([
-            "user" => Auth::user(),
-            "access_token" => $accessToken
-        ]);
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+                $response = ['token' => $token];
+                return response($response, 200);
+            } else {
+                $response = ["message" => "password mismatch"];
+                return response($response, 422);
+            }
+        } else {
+            $response = ["message" => "user does not exist"];
+            return response($response, 422);
+        }
+    }
+    public function logout(Request $request)
+    {
+        $token = $request->user()->token();
+        $token->revoke();
+        $response = ['message' => 'logout success'];
+        return response($response, 200);
     }
 }

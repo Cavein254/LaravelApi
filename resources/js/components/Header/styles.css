@@ -1,0 +1,37 @@
+.nav {
+  box-shadow: 0 0 5px #000;
+}
+.logo {
+  width: 40%;
+  padding-right: 1.5rem;
+}
+.nav_icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav_icons > span {
+  padding-right: 1.5rem;
+}
+
+.nav_fa_icons {
+  color: #17a2b8;
+}
+
+.nav_fa_icons:hover {
+  color: #15ee44;
+  font-size: 2.3rem;
+}
+
+.navbar-nav {
+  width: 80%;
+}
+
+.login_btn {
+  margin-right: 1%;
+}
+
+.post_question {
+  margin-left: 1.2rem;
+  color: #fff;
+}

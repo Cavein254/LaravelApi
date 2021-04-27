@@ -1,0 +1,23 @@
+.question_wrapper {
+  margin-top: 1.4rem;
+  box-shadow: 0 0 10px #000;
+  border: 2px solid #000;
+}
+
+.side_view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.question_footer {
+  display: flex;
+}
+
+.question_tags {
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+}

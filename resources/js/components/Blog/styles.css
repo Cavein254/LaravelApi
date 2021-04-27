@@ -1,0 +1,30 @@
+.editor_wrapper {
+  box-shadow: 0 0 5px #000;
+  margin-top: 10px;
+  padding: 1rem;
+  margin-bottom: 10vh;
+  margin-top: 10vh;
+}
+
+.editor_topbar {
+  margin-bottom: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+.publish_btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.editor_content {
+  margin-bottom: 10rem;
+}
+.bottom_btn {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn_danger {
+  margin-right: 0.8rem;
+}
+.btn_draft {
+  margin-right: 0.8rem;
+}
