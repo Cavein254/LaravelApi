@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
 //public routes
-Route::group([], function () {
+Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
     Route::get('/blog', 'App\Http\Controllers\BlogController@index');
     Route::get('/blog', 'App\Http\Controllers\BlogController@show');
