@@ -33,7 +33,7 @@ Route::apiResource('blog', 'App\Http\Controllers\BlogController');
 
 //public routes
 Route::group([], function () {
-    Route::get('/questions', 'QuestionsContoller@index');
+    Route::get('/questions', 'App\Http\Controllers\QuestionController@index');
     Route::get('/questions/{question}', 'QuestionsContoller@show');
     Route::post('register', 'App\Http\Controllers\AccessController@register');
     Route::post('login', 'App\Http\Controllers\AccessController@login');
