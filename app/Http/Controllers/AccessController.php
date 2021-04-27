@@ -34,7 +34,7 @@ class AccessController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
-            'password' => 'required|min:3|string',
+            'password' => 'required|min:5|string',
         ]);
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], 422);

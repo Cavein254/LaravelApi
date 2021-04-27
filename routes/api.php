@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::get('/questions', 'QuestionsContoller@index');
-// Route::get('/questions/{question}', 'QuestionsContoller@show');
+
 
 Route::resource('questions', 'App\Http\Controllers\QuestionController');
 // Route::apiResource('login', 'App\Http\Controllers\API\AuthControllers\@login');
@@ -18,8 +17,7 @@ Route::resource('questions', 'App\Http\Controllers\QuestionController');
 Route::get('users', 'App\Http\Controllers\UserList@index');
 Route::group(['middleware' => ['auth:api']], function () {
 });
-Route::post('register', 'App\Http\Controllers\AccessController@register');
-Route::post('login', 'App\Http\Controllers\AccessController@login');
+
 
 
 // Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
@@ -31,3 +29,12 @@ Route::apiResource('profile', 'App\Http\Controllers\ProfileController');
 Route::apiResource('answers', 'App\Http\Controllers\AnswersController');
 
 Route::apiResource('blog', 'App\Http\Controllers\BlogController');
+
+
+//public routes
+Route::group([], function () {
+    Route::get('/questions', 'QuestionsContoller@index');
+    Route::get('/questions/{question}', 'QuestionsContoller@show');
+    Route::post('register', 'App\Http\Controllers\AccessController@register');
+    Route::post('login', 'App\Http\Controllers\AccessController@login');
+});
