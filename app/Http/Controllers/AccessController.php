@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 class AccessController extends Controller
@@ -18,6 +19,7 @@ class AccessController extends Controller
             'password' => 'required|min:5'
         ]);
         $validatedData['password'] = Hash::make($request->password);
+        $validatedData['remember_token'] = Str::random(15);
 
         $user = User::create([
             'name' => $validatedData['name'],
