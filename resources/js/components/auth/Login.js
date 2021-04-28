@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import "./styles.css";
-import { BASE_API_URL, CSRF_TOKEN } from '../../api'
+import { apiClient } from '../../api';
 import axios from 'axios'
 
 const Login = () => {
@@ -10,14 +10,12 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.get(CSRF_TOKEN)
+        apiClient.get('/sanctum/csrf-cookie')
             .then(response => {
-                axios.post(BASE_API_URL + 'login', {
+                apiClient.post('/login', {
                     email,
                     password
-                }).then(response => {
-                    console.log(response)
-                })
+                }).then(response => console.log(response))
             })
     }
     return (

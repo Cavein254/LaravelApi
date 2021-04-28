@@ -35,7 +35,7 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     // Route::get('/questions', 'App\Http\Controllers\QuestionController@show')->name('questions.show');
     Route::get('/questions/{question}', 'App\Http\Controllers\QuestionController@show');
     Route::get('answers{answers}', 'App\Http\Controllers\AnswersController@show');
-    // Route::post('/register', 'App\Http\Controllers\AccessController@register');
+    Route::post('/register', 'App\Http\Controllers\AccessController@register');
     // Route::post('/login', 'App\Http\Controllers\AccessController@login');
     Route::get('/', 'App\Http\Controllers\BlogController@index')->name('home');
 });
