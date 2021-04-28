@@ -28,6 +28,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'user_id' => 'string',
             'title' => 'required|string',
             'body' => 'required|string',
             'slug' => 'string',

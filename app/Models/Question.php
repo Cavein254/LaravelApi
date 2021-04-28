@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
     protected $fillable = [
         'title', 'body', 'likes', 'slug', 'views',
-        'level', 'languages', 'featured', 'answers'
+        'level', 'languages', 'featured', 'answers', 'user_id'
     ];
 
     public function user()

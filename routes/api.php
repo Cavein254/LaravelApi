@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
 
+Route::post('/questions', 'App\Http\Controllers\QuestionController@store');
 
 
 
@@ -30,7 +31,8 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
     Route::get('/blog', 'App\Http\Controllers\BlogController@index');
     Route::get('/blog', 'App\Http\Controllers\BlogController@show');
-    Route::post('/questions', 'App\Http\Controllers\QuestionController@index');
+    Route::get('/questions', 'App\Http\Controllers\QuestionController@index');
+    Route::get('/questions', 'App\Http\Controllers\QuestionController@show')->name('questions.show');
     Route::get('/questions/{question}', 'App\Http\Controllers\QuestionController@show');
     Route::get('answers{answers}', 'App\Http\Controllers\AnswersController@show');
     Route::post('/register', 'App\Http\Controllers\AccessController@register');
