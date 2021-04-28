@@ -5,19 +5,18 @@ import { FaEye, FaThumbsUp } from "react-icons/fa";
 import "./styles.css";
 
 function Questions({data}) {
-    console.log(data)
   return (
     <Container className="question_wrapper">
       <Row>
         <Col className="col-3 side_view">
           <span>
-            <FaEye /> Views: 12
+            <FaEye /> Views: {data.views}
           </span>
           <span>
-            <FaThumbsUp /> Upvotes: 11
+            <FaThumbsUp /> Upvotes: {data.likes}
           </span>
           <span>
-            <FaEye /> Answers: 2
+            <FaEye /> Answers: {data.answers}
           </span>
         </Col>
         <Col className="col-9 main_content_question">

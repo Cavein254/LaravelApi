@@ -6,10 +6,6 @@ const AllblogsPage = () => {
         <div>
             <TopBar />
             <Allblogs />
-            <Allblogs />
-            <Allblogs />
-            <Allblogs />
-            <Allblogs />
             <FooterLove />
         </div>
     );
