@@ -1,5 +1,4 @@
 import React from "react";
-import Eye from "../../../assets/img/eye.jpg";
 import { ArrowBarUp, Eyeglasses, ReplyAllFill } from "react-bootstrap-icons";
 
 export default function Question({ question }) {

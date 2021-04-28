@@ -4,8 +4,8 @@ import { Row, Col, Container } from "react-bootstrap";
 import { FaEye, FaThumbsUp } from "react-icons/fa";
 import "./styles.css";
 
-function Questions() {
-
+function Questions({data}) {
+    console.log(data)
   return (
     <Container className="question_wrapper">
       <Row>
@@ -22,12 +22,13 @@ function Questions() {
         </Col>
         <Col className="col-9 main_content_question">
           <h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea cumque
-            optio consectetur nam dignissimos.
+           {data.title}
           </h1>
           <div className="question_footer">
             <div>
-              <small className="text-muted">Posted: 14hrs ago</small>
+              <small className="text-muted">
+                  {data.created_at}
+                  </small>
             </div>
             <div className="question_tags">tags : c++ css javascript</div>
           </div>
