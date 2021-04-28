@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('users', 'App\Http\Controllers\UserList@index');
 
 
-Route::group(['middleware' => ['auth:api']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('questions', 'App\Http\Controllers\QuestionController@store');
     Route::apiResource('profile', 'App\Http\Controllers\ProfileController');
     Route::apiResource('answers', 'App\Http\Controllers\AnswersController');
