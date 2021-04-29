@@ -1,28 +1,26 @@
-import React from "react";
+import axios from "axios";
+import React,{useEffect} from "react";
 import { BASE_API_URL } from '../../api'
 import Blog from './Blog'
 import "./styles.css";
 
 
 const AllBlogs = () => {
-    const [blog, setBlog] = React.useState([]);
-    React.useEffect(() => {
-        const fetchBlog = async () => {
-            const blog = await axios.get(BASE_API_URL + 'questions')
-                .then(response => { setBlog(response.data.data) })
-                .catch(error => console.error(error))
-        }
-        fetchBlog()
-    }, []);
-
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/blog')
+        .then(response => {
+            console.log(response.data)
+        })
+    }, [])
   return (<div>
-       {
+      <h1>Allblogs</h1>
+       {/* {
            blog.map((item)=> {
                return(
                    <Blog key={item.id} />
                )
            })
-       }
+       } */}
   </div>)
 };
 

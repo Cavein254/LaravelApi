@@ -6,6 +6,7 @@ use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 
@@ -15,6 +16,7 @@ class BlogController extends Controller
     public function index()
     {
         $blog = Blog::all();
+        return $blog;
         return BlogResource::collection($blog);
     }
 
@@ -26,7 +28,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             'body' => 'required|string',
             'title' => 'string|required',
-            'slug' => 'string|slug',
+            'slug' => 'string|required',
         ]);
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], 422);

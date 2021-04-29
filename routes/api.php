@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
     Route::get('/blog', 'App\Http\Controllers\BlogController@index');
-    Route::get('/blog', 'App\Http\Controllers\BlogController@show');
+    Route::get('/blog', 'App\Http\Controllers\BlogController@index');
     Route::get('/questions', 'App\Http\Controllers\QuestionController@index');
     Route::put('/questions/{question}', 'App\Http\Controllers\QuestionController@update');
     Route::get('answers{answers}', 'App\Http\Controllers\AnswersController@show');
