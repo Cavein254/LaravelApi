@@ -4,82 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\QuestionComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionCommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $comments = QuestionComment::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'comment' => 'string|max:126',
+        ]);
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
+        }
+        $comment = QuestionComment::create($request->toArray());
+
+        return response($comment);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(QuestionComment $questionComment)
+
+    public function show(QuestionComment $comment)
     {
-        //
+        return response($comment);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(QuestionComment $questionComment)
+
+
+    public function update(Request $request, QuestionComment $comment)
     {
-        //
+        $comment->update([
+            'comment' => $request->comment,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, QuestionComment $questionComment)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\QuestionComment  $questionComment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(QuestionComment $questionComment)
+
+
+    public function destroy(QuestionComment $comment)
     {
-        //
+        $comment->delete();
     }
 }

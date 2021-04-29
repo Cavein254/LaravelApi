@@ -19,16 +19,10 @@ class QuestionController extends Controller
         return QuestionsResource::collection($questions);
     }
 
-    public function create()
-    {
-        //cr
-    }
-
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_id' => 'string',
             'title' => 'required|string',
             'body' => 'required|string',
             'slug' => 'string',

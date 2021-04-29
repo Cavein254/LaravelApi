@@ -10,7 +10,7 @@ class Question extends Model
     use HasFactory;
     protected $fillable = [
         'title', 'body', 'likes', 'slug', 'views',
-        'level', 'languages', 'featured', 'answers', 'user_id'
+        'level', 'languages', 'featured', 'answers'
     ];
 
     public function user()
@@ -18,8 +18,8 @@ class Question extends Model
         return $this->belongsTo(User::class);
     }
 
-    // public function answers()
-    // {
-    //     return $this->hasMany(Answers::class);
-    // }
+    public function answers()
+    {
+        return $this->hasMany(Answers::class);
+    }
 }
