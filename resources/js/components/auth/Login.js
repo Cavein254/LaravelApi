@@ -2,8 +2,6 @@ import React from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import "./styles.css";
 import { apiClient } from '../../api';
-import axios from 'axios'
-import { isBuffer } from "lodash-es";
 
 const Login = () => {
     const [email, setEmail] = React.useState('');
