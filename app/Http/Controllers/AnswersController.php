@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AnswersResource;
 use App\Models\Answers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AnswersController extends Controller
 {
@@ -18,6 +20,14 @@ class AnswersController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'body' => 'required|max:126',
+            'likes' => 'string',
+        ]);
+
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
+        $validator['user_id'] = Auth::user()->id;
 
         $answer = Answers::create([
             'questions_id' => $request->questions_id,

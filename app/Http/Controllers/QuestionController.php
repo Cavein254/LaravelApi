@@ -41,14 +41,15 @@ class QuestionController extends Controller
         $question = Question::create($request->toArray());
 
         return (new QuestionsResource($question))
-            ->response()
-            ->header('Location', route('questions.show', ['question' => $question]));
+            ->response();
+        // ->header('Location', route('questions', ['question' => $question]));
     }
 
 
     public function show(Question $question)
     {
-        return new QuestionsResource($question);
+        // return new QuestionsResource($question);
+        return $question;
     }
 
 
@@ -56,9 +57,20 @@ class QuestionController extends Controller
 
     public function update(Request $request, Question $question)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'slug' => 'string',
+            'level' => 'string',
+            'languages' => 'string',
+        ]);
         $question->update([
             'title' => $request->title,
             'body' => $request->body,
+            'slug' => $request->body,
+            'level' => $request->level,
+            'languages' => $request->languages,
+
         ]);
 
         return new QuestionsResource($question);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BlogResource;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -22,6 +23,15 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'body' => 'required|string',
+            'title' => 'string|required',
+            'slug' => 'string|slug',
+        ]);
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
+        }
+        $request['user_id'] = Auth::user()->id;
         $blog = Blog::create([
             'user_id' => $request->user_id,
             'title' => $request->title,
@@ -29,8 +39,8 @@ class BlogController extends Controller
             'slug' => Str::slug($request->title)
         ]);
         return (new BlogResource($blog))
-            ->response()
-            ->header('Location', route('blog.show', ['blog' => $blog]));
+            ->response();
+        // ->header('Location', route('blog.show', ['blog' => $blog]));
     }
 
 
