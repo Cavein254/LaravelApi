@@ -15,7 +15,6 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
             $table->integer('likes')->default(0);
@@ -27,10 +26,7 @@ class CreateQuestionsTable extends Migration
             $table->boolean('featured')->default(0);
             $table->string('img_url')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onCascade('delete');
+            $table->foreignId('user_id')->constrained()->onCascade('delete');
         });
     }
 

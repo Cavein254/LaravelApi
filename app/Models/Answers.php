@@ -18,6 +18,6 @@ class Answers extends Model
 
     public function replies()
     {
-        return $this->hasMany(Answers::class, 'parent_id');
+        return $this->belongsTo(Question::class, 'parent_id');
     }
 }

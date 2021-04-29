@@ -18,8 +18,8 @@ class Question extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function answers()
-    {
-        return $this->morpMany(Answers::class, 'commentable')->whereNull('parent_id');
-    }
+    // public function answers()
+    // {
+    //     return $this->hasMany(Answers::class);
+    // }
 }

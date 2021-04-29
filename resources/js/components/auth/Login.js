@@ -3,6 +3,7 @@ import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import "./styles.css";
 import { apiClient } from '../../api';
 import axios from 'axios'
+import { isBuffer } from "lodash-es";
 
 const Login = () => {
     const [email, setEmail] = React.useState('');
@@ -11,12 +12,17 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         apiClient.get('/sanctum/csrf-cookie')
-            .then(response => {
-                apiClient.post('/login', {
-                    email,
-                    password
-                }).then(response => console.log(response))
-            })
+            .then(response => console.log(response))
+        // .then(response => {
+        //     apiClient.post('/login', {
+        //         email,
+        //         password
+        //     }).then(response => {
+        //         if (response.status === 204) {
+        //             props.login();
+        //         }
+        //     })
+        // })
     }
     return (
         <Container>
