@@ -8,6 +8,7 @@ use App\Http\Resources\QuestionsResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use \App\Models\Question;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
@@ -36,7 +37,7 @@ class QuestionController extends Controller
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], 422);
         }
-
+        $request['user_id'] = Auth::user()->id;
         $question = Question::create($request->toArray());
 
         return (new QuestionsResource($question))

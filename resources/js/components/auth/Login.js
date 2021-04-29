@@ -11,18 +11,14 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        apiClient.get('/sanctum/csrf-cookie')
-            .then(response => console.log(response))
-        // .then(response => {
-        //     apiClient.post('/login', {
-        //         email,
-        //         password
-        //     }).then(response => {
-        //         if (response.status === 204) {
-        //             props.login();
-        //         }
-        //     })
-        // })
+        apiClient.post('login',{
+            email,
+            password,
+        }).then(response => {
+            if(response.status === 200) {
+                console.log(response.data.token)
+            }
+        })
     }
     return (
         <Container>
