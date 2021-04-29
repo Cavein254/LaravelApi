@@ -26,7 +26,7 @@ class CreateQuestionsTable extends Migration
             $table->boolean('featured')->default(0);
             $table->string('img_url')->nullable();
             $table->timestamps();
-            $table->foreignId('user_id')->constrained()->onCascade('delete');
+            $table->foreignId('user_id')->constrained();
         });
     }
 
