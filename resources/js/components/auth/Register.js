@@ -9,6 +9,7 @@ const Register = () => {
     const [confirm, setConfirm] = React.useState('');
     const [username, setUsername] = React.useState('');
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         apiClient.post('register',{
@@ -19,7 +20,6 @@ const Register = () => {
 
         }).then(response => {
             if(response) {
-                console.log(response.data.user)
             }
         })
     }

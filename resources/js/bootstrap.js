@@ -23,6 +23,15 @@ window.axios = require('axios');
 axios.defaults.withCredentials = true;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    }
+});
+$.ajax({
+
+});
+
 
 
 /**

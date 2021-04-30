@@ -13,3 +13,4 @@
 
 * check relationship two foreign keys problem
 
+** solve verifyCsrfToken.php

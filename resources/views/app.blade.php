@@ -3,10 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf_token" content="{{csrf_token()}}">
+        <meta name="csrf_token" content="{{csrf_token()}}" />
         <title>TUcode</title>
-        <link href="{{asset('css/app.css')}}"
+        <link href="{{asset('css/app.css')}}" />
     </head>
+    <script>
+        var csrf_token = '<?php echo csrf_token(); ?>';
+    </script>
     <body class="antialiased">
         <div id="root"></div>
 

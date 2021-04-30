@@ -1,11 +1,14 @@
 import React from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import "./styles.css";
-import { apiClient } from '../../api';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom';
+import { apiClient,SITE_TOKEN } from '../../api';
 
 const Login = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +17,10 @@ const Login = () => {
             password,
         }).then(response => {
             if(response.status === 200) {
-                console.log(response.data.token)
+                const token = (response.data.token);
+                localStorage.setItem("SITE_TOKEN",token);
+                SITE_TOKEN = token;
+                history.push('/')
             }
         })
     }
@@ -24,6 +30,7 @@ const Login = () => {
                 <Col>
                     <div className="auth_wrapper">
                         <Form onSubmit={handleSubmit}>
+                            <input type="hidden" name="token" value={csrf_token}/>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
                                 <Form.Control
