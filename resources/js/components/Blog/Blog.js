@@ -4,7 +4,7 @@ import {FaThumbsUp, FaEye} from 'react-icons/fa';
 import "./styles.css";
 
 
-const Blog = () => {
+const Blog = ({title,update}) => {
   return <div>
        <Container className="question_wrapper">
       <Row>
@@ -21,12 +21,11 @@ const Blog = () => {
         </Col>
         <Col className="col-9 main_content_question">
           <h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea cumque
-            optio consectetur nam dignissimos.
+            {title}
           </h1>
           <div className="question_footer">
             <div>
-              <small className="text-muted">Posted: 14hrs ago</small>
+              <small className="text-muted">Posted: {update}</small>
             </div>
             <div className="question_tags">tags : c++ css javascript</div>
           </div>
