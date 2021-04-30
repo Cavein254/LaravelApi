@@ -1,3 +1,4 @@
+
 export { default as Hero } from "./Content/Hero/Hero";
 export { default as TopBar } from "./Header/Navbar";
 export { default as Subsection } from "./Content/Subsection";
@@ -14,3 +15,4 @@ export { default as BlogEdit } from "./Blog/BlogEdit";
 export { default as Allblogs } from "./Blog/Allblogs";
 export { default as EditProfile } from "./profile/EditProfile";
 export { default as AnswerQuestionPage } from "./Questions/QuestionAnswers";
+export {default as EditQuery} from './Questions/EditQuery';

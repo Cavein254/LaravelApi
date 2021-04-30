@@ -20,14 +20,13 @@ class AccessController extends Controller
         ]);
         $validatedData['password'] = Hash::make($request->password);
         $validatedData['remember_token'] = Str::random(15);
-        error_log($validatedData);
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => $validatedData['password'],
             'remember_token' => $validatedData['remember_token']
         ]);
-        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+        $token = $user->createToken('user_access_token')->accessToken;
         $user['token'] = $token;
         return ([
             'user' => $user,

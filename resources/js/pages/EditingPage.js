@@ -1,11 +1,11 @@
 import React from "react";
-import { Hero, TopBar, Editing, FooterLove } from "../components/index";
+import { Hero, TopBar, FooterLove,EditQuery } from "../components/index";
 
 const HomePage = () => {
   return (
     <div>
       <TopBar />
-      <Editing />
+      <EditQuery />
       <FooterLove />
     </div>
   );
