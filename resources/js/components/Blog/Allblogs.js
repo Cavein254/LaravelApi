@@ -8,14 +8,13 @@ import "./styles.css";
 const AllBlogs = () => {
     const [blog,setBlog] = useState([])
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/blog')
+        apiClient.get('blog')
         .then(response => {
             setBlog(response.data)
         })
     }, [])
     console.log(blog)
   return (<div>
-      <h1>Allblogs</h1>
        {
            blog.map((item)=> {
                return(

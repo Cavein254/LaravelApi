@@ -19,7 +19,6 @@ const Login = () => {
             if(response.status === 200) {
                 const token = (response.data.token);
                 localStorage.setItem("SITE_TOKEN",token);
-                SITE_TOKEN = token;
                 history.push('/')
             }
         })

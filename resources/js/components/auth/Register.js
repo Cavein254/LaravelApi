@@ -1,13 +1,13 @@
 import React from "react";
 import { Form, Container, Button, Col, Row } from "react-bootstrap";
 import { apiClient } from '../../api';
-
-
+import {useHistory} from 'react-router-dom'
 const Register = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirm, setConfirm] = React.useState('');
     const [username, setUsername] = React.useState('');
+    const history = useHistory();
 
 
     const handleSubmit = (e) => {
@@ -19,7 +19,8 @@ const Register = () => {
             "name":username,
 
         }).then(response => {
-            if(response) {
+            if(response.data.data) {
+                history.push('/login');
             }
         })
     }
