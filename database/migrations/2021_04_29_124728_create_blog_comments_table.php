@@ -17,7 +17,6 @@ class CreateBlogCommentsTable extends Migration
             $table->id();
             $table->string('comment');
             $table->timestamps();
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('blogs_id')->constrained();
         });
     }
