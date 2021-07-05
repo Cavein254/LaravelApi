@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -26,11 +26,10 @@ class AccessController extends Controller
             'password' => $validatedData['password'],
             'remember_token' => $validatedData['remember_token']
         ]);
-        $token = $user->createToken('user_access_token')->accessToken;
-        $user['token'] = $token;
-        return ([
-            'user' => $user,
-        ]);
+        // $token = $user->createToken('user_access_token')->accessToken;
+        $payload['email'] = $user['email'];
+        $payload['name'] = $user['name'];
+        return response($payload, 200);
     }
 
     public function login(Request $request)
