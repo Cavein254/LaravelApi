@@ -7,6 +7,7 @@ import "./styles.css";
 const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [login, setLogin] = React.useState(false);
     const history = useHistory();
 
     const handleSubmit = (e) => {
@@ -18,6 +19,7 @@ const Login = () => {
             })
             .then((response) => {
                 if (response.status === 200) {
+                    setLogin(true);
                     const token = response.data.token;
                     localStorage.setItem("SITE_TOKEN", token);
                     console.log(token);
