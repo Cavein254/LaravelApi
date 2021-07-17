@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import Editor from "rich-markdown-editor";
 import { apiClient } from "../../api";
 import "./styles.css";
 
 const EditQuery = () => {
     const [title, setTitle] = useState("");
     const [question, setQuestion] = useState("");
+    const [defaultValue, setDefaultValue] = useState("");
+    console.log(defaultValue);
+
+    const editorProps = useMemo(() => {
+        return {
+            placeholder: "Placeholder....",
+            autofocus: true,
+            defaultValue: defaultValue,
+            onChange: (v) => {
+                setDefaultValue((prev) => v());
+            },
+            extensions: [],
+            embeds: [],
+            tooltip: () => <div>ToolTip</div>,
+        };
+    }, [defaultValue]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -52,25 +69,13 @@ const EditQuery = () => {
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
-                                <Form.Control
-                                    type="text"
-                                    placeholder="content"
-                                    value={question}
-                                    onChange={(e) =>
-                                        setQuestion(e.target.value)
-                                    }
-                                />
                             </Form.Group>
                         </Form>
                     </Col>
                 </Row>
                 <Row>
                     <Col className="editor_content">
-                        <Editor
-                            id="123"
-                            value={question}
-                            onChange={setQuestion}
-                        />
+                        <Editor {...editorProps} />
                     </Col>
                 </Row>
                 <Row>

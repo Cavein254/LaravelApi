@@ -44,17 +44,37 @@ class AccessController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                $token = $user->createToken('super_Token')->plainTextToken;
-                $response = ['token' => $token];
-                return response($response, 200);
+                $token = $user->createToken('user_token')->plainTextToken;
+               $response = [
+                   'payload'=> [
+                    'status'=> 200,
+                    'user'=> $user,
+                    'token'=> $token
+                   ]
+               ];
+                return $response;
             } else {
-                $response = ["message" => "password mismatch"];
-                return response($response, 422);
+                $response = [
+                    'payload'=>[
+                        'status'=> 401,
+                        'message' => 'Invalid email or password',
+                    ]
+                    ];
+                return $response;
             }
-        } else {
-            $response = ["message" => "user does not exist"];
-            return response($response, 422);
         }
+
+        if(!$user) {
+            $response = [
+                'payload'=> [
+                    'status'=> 401,
+                    'message' => 'This user does not exist'
+                ]
+            ];
+            return $response;
+        }
+
+
     }
     public function logout(Request $request)
     {

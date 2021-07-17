@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import Editor from "rich-markdown-editor";
 import "./styles.css";
 
-const Editing = () => {
+function Editing() {
     const [title, setTitle] = useState();
     const [question, setQuestion] = useState();
+
+    const [value, setValue] = useState("");
+    const editorProps = useMemo(() => {
+        const [defaultValue, setDefaultValue] = useState("");
+
+        return {
+            placeholder: "Placeholder....",
+            autofocus: true,
+            defaultValue: defaultValue,
+            onChange: (v) => {
+                setDefaultValue((prev) => v());
+            },
+            extensions: [],
+            embeds: [],
+            tooltip: () => <div>ToolTip</div>,
+        };
+    }, [defaultValue]);
 
     return (
         <Container>
@@ -43,7 +61,7 @@ const Editing = () => {
                 </Row>
                 <Row>
                     <Col className="editor_content">
-                        <Editor />
+                        <Editor {...editorProps} />
                     </Col>
                 </Row>
                 <Row>
@@ -57,6 +75,6 @@ const Editing = () => {
             </div>
         </Container>
     );
-};
+}
 
 export default Editing;

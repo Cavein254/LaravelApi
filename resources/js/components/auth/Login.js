@@ -2,15 +2,15 @@ import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { apiClient } from "../../api";
-import { useAuth } from "../../contexts/AuthContext";
 import "./styles.css";
 
 const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    // const [user, setUser] = React.useState([]);
+    const [error, setError] = React.useState(null);
+    const [user, setUser] = React.useState(null);
     const history = useHistory();
-    const { user } = useAuth();
+    // const { user } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,15 +20,16 @@ const Login = () => {
                 password,
             })
             .then((response) => {
-                if (response.status === 200) {
-                    console.log("----------------------");
-                    setUser(response.data);
-                    console.log("============");
-                    console.log(response.data);
-                    // const token = response.data.token;
-                    // localStorage.setItem("SITE_TOKEN", token);
-                    // history.push("/");
+                console.log("1", response.data);
+                console.log("2", response.data.payload);
+
+                if (response.data.payload !== 200) {
+                    setError(response.data.payload.message);
                 }
+                setUser(response.data.payload.user);
+                const token = response.data.payload.token;
+                localStorage.setItem("SITE_TOKEN", token);
+                history.push("/");
             });
     };
     return (
@@ -69,6 +70,7 @@ const Login = () => {
                     </div>
                 </Col>
             </Row>
+            <h1>{error}</h1>
         </Container>
     );
 };
