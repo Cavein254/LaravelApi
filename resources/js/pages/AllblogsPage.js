@@ -1,5 +1,6 @@
 import React from "react";
-import { TopBar, Allblogs, FooterLove } from "../components/index";
+import { Allblogs } from "../components";
+import { FooterLove, TopBar } from "../components/index";
 
 const AllblogsPage = () => {
     return (

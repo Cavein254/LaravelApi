@@ -13,7 +13,8 @@ const EditQuery = () => {
 
     const editorProps = useMemo(() => {
         return {
-            placeholder: "Placeholder....",
+            placeholder:
+                "Begin Typing you question, use '/' to show typing options",
             autofocus: true,
             defaultValue: defaultValue,
             onChange: (v) => {
