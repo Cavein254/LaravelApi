@@ -25,8 +25,7 @@ export const getToken = () => {
 export const apiClientPost = axios.create({
     baseURL: BASE_API_URL,
     withCredentials: true,
-    method: "POST",
     headers: {
-        Authurazation: localStorage.getItem("SITE_TOKEN"),
+        Authorization: "Bearer" + localStorage.getItem("SITE_TOKEN"),
     },
 });

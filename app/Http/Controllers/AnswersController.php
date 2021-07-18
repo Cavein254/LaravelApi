@@ -27,9 +27,10 @@ class AnswersController extends Controller
 
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], 422);
-        $validator['user_id'] = Auth::user()->id;
+        }
 
         $answer = Answers::create([
+            'user_id' => Auth::user()->id,
             'questions_id' => $request->questions_id,
             'body' => $request->body,
             'likes' => $request->likes

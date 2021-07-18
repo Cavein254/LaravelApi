@@ -2,33 +2,33 @@ import React, { useMemo, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Editor from "rich-markdown-editor";
-import { apiClient } from "../../api";
+import { apiClientPost } from "../../api";
 import "./styles.css";
 
 const EditQuery = () => {
     const [title, setTitle] = useState("");
     const [question, setQuestion] = useState("");
-    const [defaultValue, setDefaultValue] = useState("");
-    console.log(defaultValue);
 
     const editorProps = useMemo(() => {
         return {
             placeholder:
                 "Begin Typing you question, use '/' to show typing options",
             autofocus: true,
-            defaultValue: defaultValue,
+            defaultValue: question,
             onChange: (v) => {
-                setDefaultValue((prev) => v());
+                setQuestion((prev) => v());
             },
             extensions: [],
             embeds: [],
             tooltip: () => <div>ToolTip</div>,
         };
-    }, [defaultValue]);
+    }, [question]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        apiClient
+        console.log(title);
+        console.log(question);
+        apiClientPost
             .post("questions", {
                 title,
                 question,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { apiClient } from "../../api";
 import Questions from "./Questions";
 import "./styles.css";

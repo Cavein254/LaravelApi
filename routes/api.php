@@ -16,9 +16,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('/blog', 'App\Http\Controllers\BlogController');
     Route::put('profile{profile}', 'App\Http\Controllers\ProfileController@update');
     Route::post('profile', 'App\Http\Controllers\ProfileController@store');
-    Route::get('/questions', 'App\Http\Controllers\QuestionController@show')->name('questions');
 });
-
 
 
 
@@ -31,12 +29,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 //public routes
 Route::group(['middleware' => ['cors', 'json.response']], function () {
     Route::get('profile{profile}', 'App\Http\Controllers\ProfileController@show');
-    Route::get('/blog', 'App\Http\Controllers\BlogController@index');
-    Route::get('/blog', 'App\Http\Controllers\BlogController@index');
-    Route::get('/questions', 'App\Http\Controllers\QuestionController@index');
-    Route::put('/questions/{question}', 'App\Http\Controllers\QuestionController@update');
+    Route::get('/blog', 'App\Http\Controllers\BlogController@index')->name('blog');
     Route::get('answers{answers}', 'App\Http\Controllers\AnswersController@show');
-    Route::post('/register', 'App\Http\Controllers\AccessController@register');
-    Route::post('/login', 'App\Http\Controllers\AccessController@login');
     Route::get('/', 'App\Http\Controllers\BlogController@index')->name('home');
+    Route::post('/register', 'App\Http\Controllers\AccessController@register')->name('register');
+    Route::post('/login', 'App\Http\Controllers\AccessController@login')->name('login');
+    Route::get('/questions', 'App\Http\Controllers\QuestionController@index')->name('questions');
 });

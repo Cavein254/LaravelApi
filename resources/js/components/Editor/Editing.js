@@ -2,11 +2,12 @@ import React, { useMemo, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Editor from "rich-markdown-editor";
+import { apiClientPost } from "../../api";
 import "./styles.css";
 
 function Editing() {
     const [title, setTitle] = useState();
-    const [question, setQuestion] = useState();
+    const [error, setError] = useState();
 
     const [value, setValue] = useState("");
     const editorProps = useMemo(() => {
@@ -25,12 +26,26 @@ function Editing() {
         };
     }, [defaultValue]);
 
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        apiClientPost
+            .post("questions", {
+                title,
+            })
+            .then((response) => {
+                if (response.data.payload.status !== 200) {
+                    setError(response.data.payload.message);
+                }
+                history.push("/");
+            });
+    };
+
     return (
         <Container>
             <div className="editor_wrapper">
                 <Row>
                     <Col>
-                        <Form className="form-input" onSubmit={handleSubmit}>
+                        <Form className="form-input" onSubmit={handleOnSubmit}>
                             <input
                                 type="hidden"
                                 name="token"

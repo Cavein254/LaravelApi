@@ -16,6 +16,7 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         //get all questions
+        dd($request);
         $questions = Question::all();
         return QuestionsResource::collection($questions);
     }
@@ -41,8 +42,8 @@ class QuestionController extends Controller
         $question = Question::create($request->toArray());
 
         return (new QuestionsResource($question))
-            ->response();
-        // ->header('Location', route('questions', ['question' => $question]));
+            ->response()
+            ->header('Location', route('questions', ['question' => $question]));
     }
 
 

@@ -20,16 +20,14 @@ const Login = () => {
                 password,
             })
             .then((response) => {
-                console.log("1", response.data);
-                console.log("2", response.data.payload);
-
-                if (response.data.payload !== 200) {
+                if (response.data.payload.status === 200) {
+                    setUser(response.data.payload.user);
+                    const token = response.data.payload.token;
+                    localStorage.setItem("SITE_TOKEN", token);
+                    history.push("/");
+                } else {
                     setError(response.data.payload.message);
                 }
-                setUser(response.data.payload.user);
-                const token = response.data.payload.token;
-                localStorage.setItem("SITE_TOKEN", token);
-                history.push("/");
             });
     };
     return (
