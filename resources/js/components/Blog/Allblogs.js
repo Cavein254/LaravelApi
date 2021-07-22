@@ -10,6 +10,7 @@ const AllBlogs = () => {
             setBlog(response.data);
         });
     }, []);
+    console.log(blog);
     return (
         <div>
             {blog.map((item) => {

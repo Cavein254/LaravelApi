@@ -4,12 +4,14 @@ import Questions from "./Questions";
 import "./styles.css";
 
 function QuestionList() {
-    const [question, setQuestion] = useState([]);
+    const [questions, setQuestions] = useState([]);
     useEffect(() => {
+        console.log("on use effect");
         apiClient.get("questions").then((response) => {
-            setQuestion(response.data);
+            setQuestions(response.data.data);
         });
     }, []);
+    console.log(questions);
     return (
         <>
             {questions.map((question) => {

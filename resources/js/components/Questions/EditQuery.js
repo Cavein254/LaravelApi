@@ -26,18 +26,38 @@ const EditQuery = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(title);
-        console.log(question);
         apiClientPost
             .post("questions", {
                 title,
                 question,
             })
             .then((response) => {
+                console.log(response);
                 if (response.status === 200) {
                     console.log(response);
                 }
             });
+
+        // async function postData(url = "", data = {}) {
+        //     console.log(`Bearer ${localStorage.getItem("token")}`);
+        //     const response = await fetch(url, {
+        //         method: "POST",
+        //         mode: "no-cors",
+        //         cache: "no-cache",
+        //         credentials: "same-origin",
+        //         headers: {
+        //             Authorization: `${localStorage.getItem("token")}`,
+        //         },
+        //         redirect: "follow",
+        //         referrerPolicy: "no-referrer",
+        //         body: JSON.stringify(data),
+        //     });
+        //     return response;
+        // }
+        // postData("http://127.0.0.1:8000/api/questions", {
+        //     title,
+        //     question,
+        // }).then((data) => console.log(data));
     };
 
     return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { apiClient } from "../../api";
+import { apiClient, CSRF_TOKEN } from "../../api";
 import "./styles.css";
 
 const Login = () => {
@@ -14,28 +14,38 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        apiClient
-            .post("login", {
-                email,
-                password,
-            })
-            .then((response) => {
-                if (response.data.payload.status === 200) {
-                    setUser(response.data.payload.user);
-                    const token = response.data.payload.token;
-                    localStorage.setItem("SITE_TOKEN", token);
-                    history.push("/");
-                } else {
-                    setError(response.data.payload.message);
-                }
-            });
+        apiClient.get(CSRF_TOKEN).then((response) => {
+            apiClient
+                .post("login", {
+                    email,
+                    password,
+                })
+                .then((response) => {
+                    console.log(response);
+                    if (response.data.payload.status === 200) {
+                        localStorage.setItem(
+                            "token",
+                            response.data.payload.token
+                        );
+                        axios.defaults.headers.common[
+                            "Authorization"
+                        ] = `Bearer ${response.data.payload.token}`;
+                        axios.defaults.headers.common["Accept"] = "*/*";
+                        console.log(`Bearer ${response.data.payload.token}`);
+                        // history.push("/");
+                    } else {
+                        setError(response.data.payload.message);
+                        localStorage.removeItem("token");
+                    }
+                });
+        });
     };
     return (
         <Container>
             <Row>
                 <Col>
                     <div className="auth_wrapper">
-                        <Form onSubmit={handleSubmit}>
+                        <Form>
                             <input
                                 type="hidden"
                                 name="token"
@@ -63,7 +73,9 @@ const Login = () => {
                                     required
                                 />
                             </Form.Group>
-                            <Button type="submit">Login</Button>
+                            <Button type="submit" onClick={handleSubmit}>
+                                Login
+                            </Button>
                         </Form>
                     </div>
                 </Col>

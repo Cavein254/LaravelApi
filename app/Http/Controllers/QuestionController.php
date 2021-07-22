@@ -16,7 +16,6 @@ class QuestionController extends Controller
     public function index(Request $request)
     {
         //get all questions
-        dd($request);
         $questions = Question::all();
         return QuestionsResource::collection($questions);
     }
@@ -49,7 +48,9 @@ class QuestionController extends Controller
 
     public function show(Question $question)
     {
+        // dd($question);
         // return new QuestionsResource($question);
+
         return $question;
     }
 

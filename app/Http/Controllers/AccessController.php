@@ -44,11 +44,11 @@ class AccessController extends Controller
         $user = User::where('email', $request->email)->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                $token = $user->createToken('user_token')->plainTextToken;
+                $user->tokens()->where('name', $request->device_name)->delete();
+                $token = $user->createToken($request->header('User-Agent'))->plainTextToken;
                $response = [
                    'payload'=> [
                     'status'=> 200,
-                    'user'=> $user,
                     'token'=> $token
                    ]
                ];

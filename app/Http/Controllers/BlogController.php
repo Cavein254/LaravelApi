@@ -28,7 +28,7 @@ class BlogController extends Controller
         $validator = Validator::make($request->all(), [
             'body' => 'required|string',
             'title' => 'string|required',
-            'slug' => 'string|required',
+            'slug' => 'string',
         ]);
         if ($validator->fails()) {
             return response(['errors' => $validator->errors()->all()], 422);
@@ -48,6 +48,7 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
+        dd($blog);
         return new BlogResource($blog);
     }
 
