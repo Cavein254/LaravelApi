@@ -56,7 +56,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(App\Models\Profile::class);
     }
 
-    public function posts()
+    public function questions()
     {
         return $this->hasMany(Question::class);
     }

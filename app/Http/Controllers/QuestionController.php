@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
-    public function userQuestion(Request $request) {
+    public function userQuestions(Request $request) {
 
         $questions = auth()->user()->questions;
 
@@ -28,9 +28,13 @@ class QuestionController extends Controller
         return QuestionsResource::collection($questions);
     }
 
+    public function save(Request $request){
+        dd('request');
+    }
 
     public function store(Request $request)
     {
+        dd($request);
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'body' => 'required|string',

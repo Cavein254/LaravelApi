@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Facade\FlareClient\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Console\JWTGenerateSecretCommand;
@@ -97,7 +96,7 @@ class UserAuthController extends Controller
         }
     }
 
-    public function get_user (Request $request)
+    public function getUser (Request $request)
     {
         $this->validate($request,[
             'token'=> 'required'

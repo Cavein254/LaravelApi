@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\ApiQuestionController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,12 +55,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [UserAuthController::class, 'login']);
 Route::post('register', [UserAuthController::class, 'register']);
+Route::group(['middleware'=> ['jwt.verify']], function(){
+    Route::get('get-user', [UserAuthController::class, 'getUser']);
+});
 
-Route::get('questions', [QuestionController::class, 'index']);
-
-
+Route::get('questions', [ApiQuestionController::class, 'index']);
+Route::get('question/{id}', [ApiQuestionController::class, 'show']);
 Route::group(['middleware'=>['jwt.verify']], function(){
-    Route::get('get-user', [UserAuthController::class, 'get_user']);
-    Route::post('create', [QuestionController::class], 'store');
-    Route::post('user-questions', [QuestionController::class], 'userQuestions');
+    Route::get('user-questions',[ApiQuestionController::class, 'userQuestions']);
+    Route::post('create-question', [ApiQuestionController::class, 'save']);
+    Route::put('update-question');
 });

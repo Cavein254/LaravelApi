@@ -2,7 +2,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 export const BASE_API_URL = "http://127.0.0.1:8000/api/";
-export const CSRF_TOKEN = "http://127.0.0.1:8000/sanctum/csrf-cookie";
 
 export const apiClient = axios.create({
     baseURL: BASE_API_URL,
