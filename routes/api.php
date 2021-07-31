@@ -56,7 +56,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [UserAuthController::class, 'login']);
 Route::post('register', [UserAuthController::class, 'register']);
 
+Route::get('questions', [QuestionController::class, 'index']);
+
+
 Route::group(['middleware'=>['jwt.verify']], function(){
     Route::get('get-user', [UserAuthController::class, 'get_user']);
     Route::post('create', [QuestionController::class], 'store');
+    Route::post('user-questions', [QuestionController::class], 'userQuestions');
 });

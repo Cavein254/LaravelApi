@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
+    public function userQuestion(Request $request) {
+
+        $questions = auth()->user()->questions;
+
+        return $questions;
+
+    }
 
     public function index(Request $request)
     {
