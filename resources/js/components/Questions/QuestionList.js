@@ -5,18 +5,23 @@ import "./styles.css";
 
 function QuestionList() {
     const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         console.log("on use effect");
         apiClient.get("questions").then((response) => {
-            setQuestions(response.data.data);
+            let data = response.data;
+            if (data) {
+                setLoading(false);
+                const questionData = data;
+                setQuestions(questionData);
+            }
         });
     }, []);
-    console.log(questions);
+
     return (
         <>
             {questions.map((question) => {
-                const short = question.attributes;
-                return <Questions key={question.id} data={short} />;
+                return <Questions key={question.id} data={question} />;
             })}
         </>
     );

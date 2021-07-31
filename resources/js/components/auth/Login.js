@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { apiClient, CSRF_TOKEN } from "../../api";
+import { apiClient } from "../../api";
 import "./styles.css";
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        apiClient.get(CSRF_TOKEN).then((response) => {
+        apiClient.get.then((response) => {
             apiClient
                 .post("login", {
                     email,

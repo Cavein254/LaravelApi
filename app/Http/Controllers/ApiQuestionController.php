@@ -48,4 +48,21 @@ class ApiQuestionController extends Controller
         $question = Question::find($id);
         return $question;
     }
+
+    public function update(Request $request, $question)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'body' => 'required|string',
+            'slug' => 'string',
+            'level' => 'string',
+            'languages' => 'string',
+        ]);
+        if ($validator->fails()) {
+            return response(['errors' => $validator->errors()->all()], 422);
+        }
+        Question::where('id', $question)->update($request->all());
+        $question = Question::find($question);
+        return response()->json($question);
+    }
 }
