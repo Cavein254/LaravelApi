@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
+
     public function index(Request $request)
     {
         //get all questions
