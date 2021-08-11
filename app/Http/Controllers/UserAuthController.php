@@ -31,14 +31,14 @@ class UserAuthController extends Controller
                 return response()->json([
                     'success'=> false,
                     'message'=> 'Invalid Email or Password'
-                ], 400);
+                ]);
             }
         } catch (JWTException $e){
             return $credentials;
             return response()->json([
                 'success'=> false,
                 'message'=> 'Could not create token',
-            ], 500);
+            ]);
         }
 
         return response()->json([
@@ -54,21 +54,25 @@ class UserAuthController extends Controller
             'password'=> 'required|string|confirmed|min:3'
         ]);
 
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+        if(!$validator->fails()){
+            $user = User::create([
+                'name'=> $request->name,
+                'email'=> $request->email,
+                'password'=> Hash::make($request->password)
+            ]);
+
+            return response()->json([
+                'success'=> true,
+                'message'=> 'user successfully registered',
+                'user' => $user
+            ], 201);
         }
 
-        $user = User::create([
-            'name'=> $request->name,
-            'email'=> $request->email,
-            'password'=> Hash::make($request->password)
+        return response()->json([
+            "success"=>false,
+            "message"=>$validator->errors()->toJson()
         ]);
 
-        return response()->json([
-            'success'=> true,
-            'message'=> 'user successfully registered',
-            'user' => $user
-        ], 201);
     }
 
     public function logout (Request $request)

@@ -14,31 +14,41 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        apiClient.get.then((response) => {
-            apiClient
-                .post("login", {
-                    email,
-                    password,
-                })
-                .then((response) => {
-                    console.log(response);
-                    if (response.data.payload.status === 200) {
-                        localStorage.setItem(
-                            "token",
-                            response.data.payload.token
-                        );
-                        axios.defaults.headers.common[
-                            "Authorization"
-                        ] = `Bearer ${response.data.payload.token}`;
-                        axios.defaults.headers.common["Accept"] = "*/*";
-                        console.log(`Bearer ${response.data.payload.token}`);
-                        // history.push("/");
-                    } else {
-                        setError(response.data.payload.message);
-                        localStorage.removeItem("token");
-                    }
-                });
+        apiClient.post("login", { email, password }).then((res) => {
+            if (!res.data.success) {
+                setError(res.data.message);
+            } else {
+                console.log(res.data);
+                localStorage.setItem("token", res.data.token);
+            }
+            // history.push("/");
         });
+        // apiClient.get.then((response) => {
+        //     apiClient
+        //         .post("login", {
+        //             email,
+        //             password,
+        //         })
+        //         .then((response) => {
+        //             console.log(response);
+        //             if (response) {
+        //                 console.log(response);
+        // localStorage.setItem(
+        //     "token",
+        //     response.data.payload.token
+        // );
+        // axios.defaults.headers.common[
+        //     "Authorization"
+        // ] = `Bearer ${response.data.payload.token}`;
+        // axios.defaults.headers.common["Accept"] = "*/*";
+        // console.log(`Bearer ${response.data.payload.token}`);
+        // history.push("/");
+        //             } else {
+        //                 setError(response.data.payload.message);
+        //                 localStorage.removeItem("token");
+        //             }
+        //         });
+        // });
     };
     return (
         <Container>

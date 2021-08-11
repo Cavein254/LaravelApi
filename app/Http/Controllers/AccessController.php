@@ -34,12 +34,14 @@ class AccessController extends Controller
 
     public function login(Request $request)
     {
+        dd($request);
+
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email',
             'password' => 'required|min:5|string',
         ]);
         if ($validator->fails()) {
-            return response(['errors' => $validator->errors()->all()], 422);
+            return response(['errors' => $validator->errors()->all()]);
         }
         $user = User::where('email', $request->email)->first();
         if ($user) {

@@ -19,10 +19,13 @@ const Register = () => {
                 name: username,
             })
             .then((response) => {
-                if (response.status === 200) {
-                    console.log(response.data);
-                    history.push("/login");
+                if (response) {
+                    if (response.data.success) {
+                        return history.push("/login");
+                    }
                 }
+
+                console.log(response.data);
             });
     };
     return (

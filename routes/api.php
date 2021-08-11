@@ -61,6 +61,7 @@ Route::group(['middleware'=> ['jwt.verify']], function(){
 
 Route::get('questions', [ApiQuestionController::class, 'index']);
 Route::get('question/{id}', [ApiQuestionController::class, 'show']);
+
 Route::group(['middleware'=>['jwt.verify']], function(){
     Route::get('user-questions',[ApiQuestionController::class, 'userQuestions']);
     Route::post('create-question', [ApiQuestionController::class, 'save']);
