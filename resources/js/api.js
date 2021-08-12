@@ -8,8 +8,6 @@ export const apiClient = axios.create({
     withCredentials: true,
 });
 
-export let SITE_TOKEN = "";
-
 export const getToken = () => {
     const history = useHistory();
     let siteToken = localStorage.getItem("SITE_TOKEN");
@@ -21,10 +19,18 @@ export const getToken = () => {
     }
 };
 
+export const getSession = () => {
+    const history = useHistory();
+    let clientToken = sessionStorage.getItem("token");
+    if (clientToken) {
+        SITE_TOKEN = clientToken;
+        return SITE_TOKEN;
+    } else {
+        history.push("/login");
+    }
+};
+
 export const apiClientPost = axios.create({
     baseURL: BASE_API_URL,
     withCredentials: true,
-    Authorization: {
-        Headers: `Bearer ${localStorage.getItem("token")}`,
-    },
 });

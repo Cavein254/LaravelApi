@@ -2,53 +2,33 @@ import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { apiClient } from "../../api";
+import useToken from "../../hooks/useToken";
 import "./styles.css";
 
 const Login = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [error, setError] = React.useState(null);
-    const [user, setUser] = React.useState(null);
     const history = useHistory();
-    // const { user } = useAuth();
+    const { token, setToken } = useToken();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         apiClient.post("login", { email, password }).then((res) => {
             if (!res.data.success) {
                 setError(res.data.message);
+                //find better ways to remove
+                //this token
+                sessionStorage.removeItem("SITE_TOKEN");
             } else {
-                console.log(res.data);
-                localStorage.setItem("token", res.data.token);
+                console.log(res.data.token);
+                localStorage.setItem("SITE_TOKEN", res.data.token);
+                if (!token) {
+                    setError("Unable to Authenticate User");
+                }
+                history.push("/");
             }
-            // history.push("/");
         });
-        // apiClient.get.then((response) => {
-        //     apiClient
-        //         .post("login", {
-        //             email,
-        //             password,
-        //         })
-        //         .then((response) => {
-        //             console.log(response);
-        //             if (response) {
-        //                 console.log(response);
-        // localStorage.setItem(
-        //     "token",
-        //     response.data.payload.token
-        // );
-        // axios.defaults.headers.common[
-        //     "Authorization"
-        // ] = `Bearer ${response.data.payload.token}`;
-        // axios.defaults.headers.common["Accept"] = "*/*";
-        // console.log(`Bearer ${response.data.payload.token}`);
-        // history.push("/");
-        //             } else {
-        //                 setError(response.data.payload.message);
-        //                 localStorage.removeItem("token");
-        //             }
-        //         });
-        // });
     };
     return (
         <Container>

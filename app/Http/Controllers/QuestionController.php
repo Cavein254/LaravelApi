@@ -34,7 +34,6 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'body' => 'required|string',
@@ -52,9 +51,7 @@ class QuestionController extends Controller
         $request['user_id'] = Auth::user()->id;
         $question = Question::create($request->toArray());
 
-        return (new QuestionsResource($question))
-            ->response()
-            ->header('Location', route('questions', ['question' => $question]));
+        return $question;
     }
 
 

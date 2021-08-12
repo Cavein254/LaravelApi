@@ -34,6 +34,7 @@ class AccessController extends Controller
 
     public function login(Request $request)
     {
+        //Dead route
         dd($request);
 
         $validator = Validator::make($request->all(), [

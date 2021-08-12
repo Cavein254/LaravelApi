@@ -1,8 +1,9 @@
+// import { apiClientPost } from "../../api";
+import axios from "axios";
 import React, { useMemo, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Editor from "rich-markdown-editor";
-import { apiClientPost } from "../../api";
 import "./styles.css";
 
 const EditQuery = () => {
@@ -24,40 +25,36 @@ const EditQuery = () => {
         };
     }, [question]);
 
+    const auth = localStorage.getItem("SITE_TOKEN");
+    const bearer = `Bearer ${auth}`;
+    console.log(bearer);
+    const config = {
+        headers: { Authorization: bearer },
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        apiClientPost
-            .post("questions", {
-                title,
-                question,
+        const bodyParameters = {
+            title,
+            question,
+        };
+        axios
+            .post("http://127.0.0.1:8000/api/create-question", {
+                config,
+                bodyParameters,
             })
-            .then((response) => {
-                console.log(response);
-                if (response.status === 200) {
-                    console.log(response);
-                }
-            });
-
-        // async function postData(url = "", data = {}) {
-        //     console.log(`Bearer ${localStorage.getItem("token")}`);
-        //     const response = await fetch(url, {
-        //         method: "POST",
-        //         mode: "no-cors",
-        //         cache: "no-cache",
-        //         credentials: "same-origin",
-        //         headers: {
-        //             Authorization: `${localStorage.getItem("token")}`,
-        //         },
-        //         redirect: "follow",
-        //         referrerPolicy: "no-referrer",
-        //         body: JSON.stringify(data),
+            .then((res) => console.log(res));
+        // apiClientPost
+        //     .post("create-question", {
+        //         title,
+        //         question,
+        //     })
+        //     .then((response) => {
+        //         // console.log(response);
+        //         if (response.status === 200) {
+        //             console.log(response);
+        //         }
         //     });
-        //     return response;
-        // }
-        // postData("http://127.0.0.1:8000/api/questions", {
-        //     title,
-        //     question,
-        // }).then((data) => console.log(data));
     };
 
     return (
